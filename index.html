@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dyfnz Product Lookup Widget</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="product-widget">
+        <div class="widget-header">
+            <h3>Product Lookup</h3>
+            <div id="status-indicator" class="status-idle">Ready</div>
+        </div>
+        
+        <div class="search-container">
+            <!-- Manufacturer Selection -->
+            <div class="form-group">
+                <label for="manufacturer-select">Manufacturer:</label>
+                <div class="select-wrapper">
+                    <select id="manufacturer-select" disabled>
+                        <option value="">Loading manufacturers...</option>
+                    </select>
+                    <div class="loading-spinner" id="manufacturer-spinner"></div>
+                </div>
+                <div class="manufacturer-stats" id="manufacturer-stats"></div>
+            </div>
+            
+            <!-- Product Search (appears after manufacturer selection) -->
+            <div class="form-group" id="product-search-group" style="display: none;">
+                <label for="product-search">Search Products:</label>
+                <div class="search-wrapper">
+                    <input type="text" id="product-search" placeholder="Enter part number or description..." disabled>
+                    <div class="loading-spinner" id="product-spinner"></div>
+                </div>
+                <div class="search-stats" id="search-stats"></div>
+            </div>
+            
+            <!-- Product Results -->
+            <div id="product-results" class="results-container" style="display: none;">
+                <div class="results-header">
+                    <span id="results-count">0 products found</span>
+                    <div class="source-indicator" id="source-indicator"></div>
+                </div>
+                <div id="products-list" class="products-list"></div>
+            </div>
+        </div>
+        
+        <!-- Error Display -->
+        <div id="error-display" class="error-container" style="display: none;">
+            <div class="error-message" id="error-message"></div>
+            <button id="retry-button" class="retry-btn">Retry</button>
+        </div>
+        
+        <!-- Selected Product Preview -->
+        <div id="selected-product" class="selected-product" style="display: none;">
+            <div class="product-preview">
+                <h4>Selected Product</h4>
+                <div id="selected-details"></div>
+                <div class="action-buttons">
+                    <button id="add-to-quote-btn" class="primary-btn">Add to Quote</button>
+                    <button id="clear-selection-btn" class="secondary-btn">Clear</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="config.js"></script>
+    <script src="widget.js"></script>
+</body>
+</html>
