@@ -209,7 +209,7 @@ class ProductWidget {
             this.resultsCount.textContent = `${displayedCount} products found`;
         }
         
-        // Hide the confusing source indicator for cleaner UX
+        // Completely hide the source indicator - no more confusing tags
         this.sourceIndicator.style.display = 'none';
         
         // Update search stats
@@ -234,24 +234,6 @@ class ProductWidget {
         
         this.productResults.style.display = 'block';
         DEBUG.log('Displayed', products.length, 'products');
-    }
-    
-    updateSourceIndicator(sourceCounts) {
-        this.sourceIndicator.innerHTML = '';
-        
-        if (sourceCounts.supabase > 0) {
-            const tag = document.createElement('span');
-            tag.className = 'source-tag source-supabase';
-            tag.textContent = `${sourceCounts.supabase} Catalog`;
-            this.sourceIndicator.appendChild(tag);
-        }
-        
-        if (sourceCounts.zoho > 0) {
-            const tag = document.createElement('span');
-            tag.className = 'source-tag source-zoho';
-            tag.textContent = `${sourceCounts.zoho} Local`;
-            this.sourceIndicator.appendChild(tag);
-        }
     }
     
     createProductElement(product, index) {
