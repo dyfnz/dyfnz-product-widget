@@ -4,6 +4,7 @@
 const WIDGET_CONFIG = {
     // Supabase Edge Function Endpoints
     SUPABASE_URL: 'https://tydxdpntshbobomemzxj.supabase.co',
+    SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR5ZHhkcG50c2hib2JvbWVtenhqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA4MTg0MjcsImV4cCI6MjA3NjM5NDQyN30.cVcmS7yKqAF1LBOTz0ZNgxgaEILLi7FuWX9E8eZjZac',
     ENDPOINTS: {
         MANUFACTURER_LOOKUP: '/functions/v1/manufacturer-lookup',
         PRODUCT_SEARCH: '/functions/v1/product-search', 
@@ -97,6 +98,8 @@ const API = {
                 signal: controller.signal,
                 headers: {
                     'Content-Type': 'application/json',
+                    'apikey': WIDGET_CONFIG.SUPABASE_ANON_KEY,
+                    'Authorization': `Bearer ${WIDGET_CONFIG.SUPABASE_ANON_KEY}`,
                     ...options.headers
                 }
             });
@@ -120,7 +123,7 @@ const API = {
 
 // Debug Mode (for development)
 const DEBUG = {
-    enabled: ENVIRONMENT.isStandalone() && window.location.hostname === 'localhost',
+    enabled: ENVIRONMENT.isStandalone() && (window.location.hostname === 'localhost' || window.location.hostname.includes('github.io')),
     log: (...args) => {
         if (DEBUG.enabled) console.log('[Widget Debug]', ...args);
     },
