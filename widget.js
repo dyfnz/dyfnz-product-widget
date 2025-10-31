@@ -103,7 +103,7 @@ class ProductWidget {
         
         try {
             const url = API.buildUrl(WIDGET_CONFIG.ENDPOINTS.MANUFACTURER_LOOKUP, {
-                limit: 50
+                limit: 1000  // Request all manufacturers (no artificial limit)
             });
             
             DEBUG.log('Loading manufacturers from:', url);
