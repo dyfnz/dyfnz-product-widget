@@ -199,8 +199,15 @@ class ProductWidget {
         const products = data.products || [];
         this.currentProducts = products;
         
-        // Update results count and source info
-        this.resultsCount.textContent = `${products.length} products found`;
+        // Update results count with total available information
+        const totalAvailable = data.source_counts?.total_available || products.length;
+        const displayedCount = products.length;
+        
+        if (totalAvailable > displayedCount) {
+            this.resultsCount.textContent = `Showing ${displayedCount} of ${totalAvailable} products`;
+        } else {
+            this.resultsCount.textContent = `${displayedCount} products found`;
+        }
         
         if (data.source_counts && WIDGET_CONFIG.SHOW_SOURCE_INDICATORS) {
             this.updateSourceIndicator(data.source_counts);
