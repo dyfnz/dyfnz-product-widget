@@ -209,9 +209,8 @@ class ProductWidget {
             this.resultsCount.textContent = `${displayedCount} products found`;
         }
         
-        if (data.source_counts && WIDGET_CONFIG.SHOW_SOURCE_INDICATORS) {
-            this.updateSourceIndicator(data.source_counts);
-        }
+        // Hide the confusing source indicator for cleaner UX
+        this.sourceIndicator.style.display = 'none';
         
         // Update search stats
         const searchInfo = data.query_info || {};
